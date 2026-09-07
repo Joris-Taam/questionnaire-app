@@ -1,0 +1,27 @@
+<div class="px-3">
+  <div class="d-flex justify-content-start text-start border-bottom">
+    <a class="icon pt-3" [routerLink]="'/home'">
+      <span class="fas fa-chevron-left fs-3 text-dark"></span>
+    </a>
+    <h1 class="fw-normal text-start text-truncate pt-2 ps-5">{{ headerText }}</h1>
+  </div>
+</div>
+
+<main>
+
+  <div *ngIf="isLoading" class="loading-spinner">
+    <app-spinner></app-spinner>
+  </div>
+
+  <ul *ngIf="!isLoading" class="px-3">
+    <li *ngFor="let questionnaire of questionnaires" [routerLink]="['/admin/resultdetail']"
+      [queryParams]="{ id: questionnaire.id }" class="questionnaire-item border-bottom">
+      <label>{{ questionnaire.name }}</label>
+      <span class="fas fa-chevron-right"></span>
+    </li>
+  </ul>
+  <app-zero-state *ngIf="!isLoading && (!questionnaires || questionnaires.length === 0)"
+    [mainText]="'Geen vragenlijsten gevonden'" [subText]="'Er zijn nog geen vragenlijsten beschikbaar voor resultaten'"
+    [icon]="'fas fa-search'">
+  </app-zero-state>
+</main>

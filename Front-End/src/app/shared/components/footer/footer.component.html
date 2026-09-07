@@ -1,0 +1,12 @@
+<footer>
+  <div class="footer-buttons">
+    <app-button *ngIf="buttonVisibility.showDelete" [btnLeftIcon]="'trash'" [btnType]="'link'"
+      [btnTextColor]="'white'" (click)="onDeleteClick()"></app-button>
+  </div>
+
+  <app-button *ngIf="buttonVisibility.showToevoegen" [btnText]="'Opslaan'" [btnBackgroundColor]="'orange'"
+    [btnTextColor]="'white'" (click)="onSaveClick()"></app-button>
+
+  <app-button *ngIf="buttonVisibility.showWijzigen" [btnText]="'Opslaan'" [btnBackgroundColor]="'orange'"
+    [btnTextColor]="'white'" (click)="onEditClick()"></app-button>
+</footer>

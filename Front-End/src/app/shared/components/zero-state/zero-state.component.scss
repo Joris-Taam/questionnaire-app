@@ -1,0 +1,28 @@
+@use '../../../shared/scss/variables.scss' as variables;
+
+.zero-state-questionnaire {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: variables.$small-rem;
+
+  .fas {
+    color: variables.$image-color;
+    font-size: 50px;
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-size: variables.$font-size-title;
+  }
+
+  p {
+    color: variables.$text-light-grey;
+    text-align: center; 
+  }
+
+  .light-blue {
+    background-color: variables.$image-color;
+  }
+}

@@ -1,0 +1,7 @@
+<button [disabled]="disabled"
+    class="btn {{btnTextClass}} {{btnBackgroundColor}} {{btnTypeClass}} {{btnCustomClass}} {{btnTextAlign}}">
+
+    <i class="fas {{btnLeftIconClass}}" *ngIf="btnLeftIcon"></i>
+    {{ btnText }}
+    <i class="fas {{btnRightIconClass}}" *ngIf="btnRightIcon"></i>
+</button>

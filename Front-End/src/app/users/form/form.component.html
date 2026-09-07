@@ -1,0 +1,57 @@
+<main *ngIf="questionnaire" class="container py-5">
+
+  <div *ngIf="isPreviewMode" class="alert alert-warning text-center">
+    <strong>Preview Mode</strong> - De antwoorden worden niet opgeslagen.<br>
+    <app-button [btnType]="'link'" [btnText]="'Terug'" [btnBackgroundColor]="'gray'" (click)="goBack()">
+    </app-button>
+  </div>
+
+  <ng-container
+    *ngIf="isPreviewMode || isDateWithinRange(questionnaire.startDate, questionnaire.endDate); else notAvailable">
+    <div class="start-form text-center" *ngIf="!currentQuestion">
+      <h2>{{ questionnaire.name }}</h2>
+      <p>{{ questionnaire.description }}</p>
+      <app-button [btnType]="'primary'" [btnText]="'Start'" [btnBackgroundColor]="'blue'"
+        (click)="startForm()"></app-button>
+    </div>
+
+    <div *ngIf="currentQuestion" class="question-container bg-white p-4 shadow-sm rounded mx-auto">
+      <h2 class="text-center mb-3">Vraag {{ currentQuestionIndex + 1 }} / {{ totalQuestions }}:</h2>
+      <p class="text-center mb-4">{{ currentQuestion.question_text }}</p>
+
+      <div class="answers mb-4">
+        <div *ngFor="let answer of currentQuestion.answer_options" class="answer-option mb-3">
+          <input type="radio" [id]="answer.option_text" [value]="answer.option_text" name="answer"
+            (change)="saveResults(answer.option_text)" [checked]="isOptionSelected(answer.option_text)"
+            (change)="selectAnswer(answer.option_text)" />
+          <label class="answer-label flex-fill" [for]="answer.option_text">
+            {{ answer.option_text }}
+          </label>
+        </div>
+      </div>
+
+      <div class="navigation-buttons d-flex justify-content-between">
+        <app-button [btnText]="'Terug'" [btnType]="'primary'" [btnBackgroundColor]="'blue'" (click)="previousQuestion()"
+          [disabled]="currentQuestionIndex === 0"></app-button>
+
+        <app-button [btnText]="'Volgende'" [btnType]="'primary'" [btnBackgroundColor]="'blue'" (click)="nextQuestion()"
+          [disabled]="currentQuestion.required && !isAnswerSelectedForCurrentQuestion() ||currentQuestionIndex === totalQuestions - 1 "></app-button>
+      </div>
+    </div>
+
+    <div class="save-button text-center mt-4" *ngIf="currentQuestionIndex === totalQuestions - 1">
+      <app-button [btnText]="'Afronden'" *ngIf="!isPreviewMode" (click)="redirectToThanksPage()" [btnType]="'primary'"
+        [btnBackgroundColor]="'blue'"></app-button>
+    </div>
+
+  </ng-container>
+
+  <ng-template #notAvailable>
+    <div class="text-center mt-5">
+      <h2>Deze vragenlijst is momenteel niet beschikbaar.</h2>
+      <p>Beschikbaar van {{ questionnaire.startDate | date:'d MMMM y' }} tot {{ questionnaire.endDate | date:'d MMMM y'
+        }}.</p>
+    </div>
+  </ng-template>
+
+</main>

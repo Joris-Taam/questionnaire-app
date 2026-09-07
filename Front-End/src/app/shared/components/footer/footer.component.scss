@@ -1,0 +1,49 @@
+@use '../../scss/variables.scss' as variables;
+
+footer {
+    display: flex;
+    background-color: variables.$blue-color;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+
+    a {
+        font-size: 24px;
+        color: black;
+    }
+
+  
+
+    .submit-button {
+        background-color: variables.$orange-color;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .edit-btn {
+        background-color: variables.$orange-color;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .delete-btn {
+        background-color: transparent;
+        border: none;
+        width: 30px;
+    }
+
+    .delete-btn span {
+        font-size: 1.5rem;
+    }
+}

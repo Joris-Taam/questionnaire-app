@@ -1,0 +1,52 @@
+<main class="px-3">
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center">Questionnaire Tool van SnelStart</h1>
+        <p class="text-center">Onder "Vragenlijst beheer" kunnen vragenlijsten aangemaakt, bewerkt en verstuurd worden.
+          De resultaten en antwoorden kunnen worden ingezien onder het kopje
+          "Resultaten beheer". In "Administratie beheer" worden de klanten uit SnelStart Polaris opgehaald. Deze kunnen gebruikt worden om doelgroepen samen te stellen.</p>
+      </div>
+    </div>
+  </div>
+
+  <ul class="list-unstyled p-2 w-100">
+    <li class="d-flex justify-content-between align-items-center py-2 border-bottom border-top w-100">
+      <a routerLink="../admin/questionnaireoverview"
+        class="d-flex align-items-center text-decoration-none text-dark w-100">
+        <label class="fw-normal mb-0">Vragenlijst beheer</label>
+        <span class="fas fa-chevron-right ms-auto"></span>
+      </a>
+    </li>
+    <li class="d-flex justify-content-between align-items-center py-2 border-bottom w-100">
+      <a routerLink="../admin/resultoverview" class="d-flex align-items-center text-decoration-none text-dark w-100">
+        <label class="fw-normal mb-0">Resultaten beheer</label>
+        <span class="fas fa-chevron-right ms-auto"></span>
+      </a>
+    </li>
+    <li class="d-flex justify-content-between align-items-center py-2 border-bottom w-100">
+      <a routerLink="../admin/administrationlist" class="d-flex align-items-center text-decoration-none text-dark w-100">
+        <label class="fw-normal mb-0">Administratie beheer</label>
+        <span class="fas fa-chevron-right ms-auto"></span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="row">
+    <div class="col-12">
+      <ul class="list-unstyled p-2 w-100">
+        <h2 class="text-center">Statistieken</h2>
+        <li class="d-flex justify-content-between align-items-center py-2 border-bottom border-top w-100">
+          <span>Aantal vragenlijsten:</span>
+          <span>{{ userStatistics.totalQuestionnaires }}</span>
+        </li>
+        <li class="d-flex justify-content-between align-items-center py-2 border-bottom w-100">
+          <span>Totaal aantal vragen:</span>
+          <span>{{ userStatistics.totalResponses }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <app-button [btnText]="'Uitloggen'" [btnBackgroundColor]="'orange'" [btnTextColor]="'white'"
+    (click)="logout()"></app-button>
+</main>

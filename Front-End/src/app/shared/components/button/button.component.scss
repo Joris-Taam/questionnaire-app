@@ -1,0 +1,22 @@
+@use '../../scss/variables.scss' as variables;
+
+.orange {
+    background-color: variables.$orange-color;
+}
+
+.blue {
+    background-color: variables.$blue-color;
+}
+
+.btn-link {
+    text-decoration: none;
+}
+
+.add-answer {
+    background-color: transparent;
+    border: none;
+    color: variables.$blue-color;
+    text-align: right;
+    width: 100%;
+    margin-bottom: variables.$small-rem;
+}

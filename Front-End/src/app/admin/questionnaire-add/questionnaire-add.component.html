@@ -1,0 +1,52 @@
+<div class="px-3">
+  <div class="d-flex justify-content-start text-start border-bottom">
+    <a class="icon pt-3" [routerLink]="'/admin/questionnaireoverview'">
+      <span class="fas fa-chevron-left fs-3 text-dark"></span>
+    </a>
+    <h1 class="fw-normal text-start text-truncate pt-2  ps-5">{{ headerText }}</h1>
+  </div>
+</div>
+
+<main>
+  <form [formGroup]="formGroup" class="questionnaire-form">
+    <div class="add-general-info">
+      <div class="justify-content-column w-100">
+        <input id="name" formControlName="name" class="form-control " placeholder="Naam..." #nameInput
+          [ngClass]="{'is-invalid': formGroup.get('name')?.invalid && formGroup.get('name')?.touched}" maxlength="50"
+          required /><span class="text-left">{{nameInput.value.length}} / 50</span>
+      </div>
+      <div class="add-dates mb-3">
+        <div class="start-date-container">
+          <label for="startDate" class="form-label">Start Datum:</label>
+          <input id="startDate" formControlName="startDate" type="date" class="form-control"
+            [ngClass]="{ 'is-invalid': (formGroup.get('startDate')?.invalid && formGroup.get('startDate')?.touched)&& formGroup.get('startDate')?.touched }"
+            required />
+        </div>
+        <div class="end-date-container">
+          <label for="endDate" class="form-label">Eind Datum:</label>
+          <input id="endDate" formControlName="endDate" type="date" class="form-control"
+            [ngClass]="{'is-invalid': (formGroup.get('endDate')?.invalid && formGroup.get('endDate')?.touched) || formGroup.hasError('dateRange') && formGroup.get('endDate')?.touched}"
+            required />
+        </div>
+      </div>
+
+      <div class="description-container mb-3">
+        <label for="description" class="form-label">Beschrijving:</label>
+        <textarea id="description" formControlName="description" class="form-control description-input" #DescriptinInput
+          placeholder="Beschrijving..."
+          [ngClass]="{'is-invalid': formGroup.get('description')?.invalid && formGroup.get('description')?.touched}"
+          maxlength="300" required></textarea><span>{{DescriptinInput.value.length}} / 300</span>
+      </div>
+
+      <div class="target-group-container">
+        <label for="target-group">Doelgroep:</label>
+        <select class="target-group-input ms-2" id="targetGroup" formControlName="targetGroup" name="target-group"
+          [ngClass]="{'is-invalid': formGroup.get('targetGroup')?.invalid && formGroup.get('targetGroup')?.touched}">
+          <option *ngFor="let group of targetGroupOptions" [value]="group">{{ group }}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <app-footer (saveClicked)="onSaveClicked()"></app-footer>
+
+</main>

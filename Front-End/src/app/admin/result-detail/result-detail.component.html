@@ -1,0 +1,67 @@
+<div class="px-3">
+  <div class="position-relative border-bottom" style="height: 56px;">
+    <a class="icon position-absolute ms-2 pt-3" [routerLink]="'/admin/resultoverview'">
+      <span class="fas fa-chevron-left fs-3 text-dark"></span>
+    </a>
+
+    <h1 class="fw-normal text-center position-absolute top-50 start-50 translate-middle m-0 px-3 text-truncate"
+      style="max-width: 90%;">
+      {{ questionnaireName }}
+    </h1>
+  </div>
+</div>
+
+
+<main>
+
+  <div *ngIf="isLoading" class="loading-spinner">
+    <app-spinner></app-spinner>
+  </div>
+
+  <div *ngIf="!isLoading && participant">
+
+    <div *ngIf="participantView">
+      <ng-container *ngIf="participant && participant.length > 0">
+
+        <ul class="px-3 text-decoration-none">
+          <li *ngFor="let answer of participant" [routerLink]="['/admin/participantdetail']"
+            [queryParams]="{ id: answer.public_id, questionnaireid: id, name: answer.participant_name }"
+            class="border-bottom">
+            <label> {{ answer.participant_name }}</label>
+            <span class="fas fa-chevron-right"></span>
+          </li>
+        </ul>
+        
+      </ng-container>
+
+      <app-zero-state *ngIf="!isLoading && (!participant || participant.length === 0)"
+        [mainText]="'Geen deelnemers gevonden'" [subText]="'Er zijn geen deelnemers die hebben ingeschreven'"
+        [icon]="'fas fa-users'">
+      </app-zero-state>
+    </div>
+
+    <div *ngIf="!isLoading && generalView">
+      <div *ngIf="answerStatsGeneral && answerStatsGeneral.length > 0" class="general-results px-3 py-3">
+        <div *ngFor="let question of answerStatsGeneral" class="question-card mb-3 shadow-sm rounded p-3 bg-white">
+          <h4 class="question-title  mb-2">{{ question.questionText }}</h4>
+          <p class="total-answers text-muted mb-3">Totaal aantal antwoorden: {{ question.totalAnswers }}</p>
+
+          <div *ngFor="let option of question.options" class="option-result mb-2">
+            <div class="option-label d-flex justify-content-between align-items-center mb-1">
+              <span class="text-truncate">{{ option.optionText }}</span>
+              <span class="percentage-text">{{ option.percentage }}%</span>
+            </div>
+            <div class="percentage-bar-container">
+              <div class="percentage-bar" [style.width.%]="option.percentage"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-zero-state *ngIf="!isLoading && (!answerStatsGeneral || answerStatsGeneral.length === 0)"
+        [mainText]="'Geen resultaten gevonden'" [subText]="'Maak een vragenlijst aan om resultaten te bekijken'"
+        [icon]="'fas fa-search'">
+      </app-zero-state>
+    </div>
+  </div>
+</main>

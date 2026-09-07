@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-between p-3">
+  <a class="icon" [routerLink]="['/home']">
+    <span class="fas fa-chevron-left fs-3 text-dark"></span>
+  </a>
+  <a class="icon" [routerLink]="['/admin/questionnaireadd']">
+    <span class="fas fa-plus fs-3 text-dark"></span>
+  </a>
+</div>
+
+<main class="px-3">
+  <table class="table table-nowrap">
+    <thead>
+      <tr>
+        <th class="bg-custom-light-grey text-custom-light-grey">Naam</th>
+        <th class="status bg-custom-light-grey text-custom-light-grey">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let questionnaire of questionnaires" [routerLink]="['/admin/questionoverview']"
+        [queryParams]="{ id: questionnaire.id }">
+        <td class="text-truncate"
+          style="max-width: 4rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+          {{ questionnaire.name }}<br>
+        </td>
+        <td class="status">
+          <span class="status-icon" [ngClass]="{
+                      'bg-success': getStatus(questionnaire.startDate, questionnaire.endDate) === 'green',
+                      'bg-warning': getStatus(questionnaire.startDate, questionnaire.endDate) === 'orange',
+                      'bg-danger': getStatus(questionnaire.startDate, questionnaire.endDate) === 'red'
+                    }">
+          </span>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <app-zero-state *ngIf="questionnaires.length === 0"
+  [mainText]="'Geen vragenlijsten gevonden'"
+  [subText]="'Maak een nieuwe vragenlijst aan om te beginnen'"
+  [icon]="'fas fa-search'">
+</app-zero-state>
+
+
+</main>

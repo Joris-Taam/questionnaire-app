@@ -1,0 +1,11 @@
+<header>
+    <div class="logo">
+        <img src="../../../../assets/Snelstart.png" alt="Snelstart Logo">
+    </div>
+    <select *ngIf="resultDetailPage" class="styled-select text-white" #mySelect id="dropdownMenu"
+        [value]="selectedValue" (change)="changeResultView(mySelect.value)">
+        <option value="GeneralView">Algemeen</option>
+        <option value="ParticipantView">Deelnemer</option>
+    </select>
+
+</header>

@@ -1,0 +1,10 @@
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+
+    .spinner-border {
+        width: 2rem;
+        height: 2rem;
+    }
+}

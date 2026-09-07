@@ -1,0 +1,26 @@
+<div class="px-3">
+    <div class="d-flex justify-content-start text-center border-bottom">
+        <a class="icon pt-3 back-button" [routerLink]="'/admin/administrationlist'">
+            <span class="fas fa-chevron-left fs-3 text-dark"></span>
+        </a>
+        <h1 class="fw-normal text-truncate pt-2 ps-5 headerText">{{ headerText }}</h1>
+    </div>
+</div>
+
+<main>
+    <div *ngIf="isLoading" class="loading-spinner">
+        <app-spinner></app-spinner>
+    </div>
+    
+    <ul *ngIf="!isLoading && relationsList" class="px-3">
+        <li *ngFor="let relation of relationsList.results" [routerLink]="['/admin/relationmanagement']"
+            [queryParams]="{ administration: administrationId, name: headerText, id: relation.name }" class="questionnaire-item border-bottom">
+            <label>{{ relation.name }}</label>
+            <span class="fas fa-chevron-right"></span>
+        </li>
+    </ul>
+    <app-zero-state *ngIf="!isLoading && (!relationsList || relationsList.results?.length === 0)"
+        [mainText]="'Geen relations gevonden'" [subText]="'Er zijn nog geen relations beschikbaar'"
+        [icon]="'fas fa-search'">
+    </app-zero-state>
+</main>

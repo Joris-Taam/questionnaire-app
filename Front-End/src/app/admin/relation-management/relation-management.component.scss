@@ -1,0 +1,24 @@
+@use '../../shared/scss/variables.scss' as variables;
+
+
+.bg-custom-light-grey {
+  background-color: variables.$bg-light-grey-color;
+}
+
+.text-custom-light-grey {
+  color: variables.$text-light-grey;
+}
+
+.table td input[type="checkbox"] {
+  margin: 0;
+  vertical-align: middle;
+}
+
+.back-button {
+  z-index: 100;
+  margin-left: 1rem; 
+}
+
+span {
+  margin-left: variables.$small-rem;
+}

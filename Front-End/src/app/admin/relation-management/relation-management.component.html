@@ -1,0 +1,47 @@
+<div class="px-3">
+    <div class="d-flex justify-content-start text-start border-bottom">
+        <a class="icon pt-3" [routerLink]="['/admin/administrationmanagement']"
+            [queryParams]="{ id: administrationId, name: headerText }">
+            <span class="fas fa-chevron-left fs-3 text-dark"></span>
+        </a>
+        <h1 class="fw-normal text-center text-truncate pt-2 w-100">Klant overzicht</h1>
+    </div>
+</div>
+<main class="px-3">
+    <div *ngIf="relationsList">
+        <div *ngFor="let items of relationsList" class="mb-4 pt-2">
+            <p class="h6">Bedrijfsnaam: <span class="fw-normal text-muted">{{ items.name }}</span></p>
+            <p class="h6">Stad: <span class="fw-normal text-muted">{{ items.city }}</span></p>
+            <p class="h6">Contact persoon: <span class="fw-normal text-muted">{{ items.contactPerson }}</span>
+            </p>
+            <p class="h6">Email: <span class="fw-normal text-muted">{{ items.email }}</span></p>
+            <p class="h6">Postcode: <span class="fw-normal text-muted">{{ items.postalCode }}</span></p>
+
+
+            <div *ngIf="targetGroups.length > 0" class="table-responsive mt-3">
+                <table class="table align-middle text-center">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col" class="bg-custom-light-grey text-custom-light-grey text-start">Naam</th>
+                            <th scope="col" class="bg-custom-light-grey text-custom-light-grey text-center">
+                                Toevoegen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let group of targetGroups">
+                            <td class="text-truncate text-start" style="max-width: 6rem;">
+                                {{ group.target_group_name }}
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <input type="checkbox" F [checked]="group.selected"
+                                        (change)="onCheckboxChange($event, group)" class="form-check-input" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

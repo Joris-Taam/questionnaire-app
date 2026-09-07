@@ -1,0 +1,22 @@
+@use '../../shared/scss/variables.scss' as *;
+
+
+main {
+  margin-top: $huge-rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+}
+
+main p {
+  font-size: $medium-rem;
+  color: #555;
+  text-align: center;
+}
+
+main h1, main p {
+  margin: 0;
+  padding: 0;
+}

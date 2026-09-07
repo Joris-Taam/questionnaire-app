@@ -1,0 +1,87 @@
+<div class="px-3" *ngIf="questionnaire">
+    <div class="d-flex justify-content-between border-bottom">
+        <a class="icon mt-3 mb-2" [routerLink]="['/admin/questionnaireoverview']">
+            <span class="fas fa-chevron-left fs-3 text-dark"></span>
+        </a>
+        <h1 class="fw-normal text-start text-truncate mt-2 mb-1" style="max-width: 65%;">{{ questionnaire.name }}</h1>
+
+        <a class="icon mt-3 mb-2" [routerLink]="['/admin/questionnaireedit']" [queryParams]="{ id: questionnaire.id}">
+            <span class="fas fa-edit fs-3 text-dark"></span>
+        </a>
+    </div>
+</div>
+
+<main class="px-3 mt-2" *ngIf="questionnaire">
+    <div class="overview-general-info">
+        <div class="overview-name text-start">
+            <div class="mb-1 text-wrap">{{ questionnaire.description }}</div>
+
+            <span>Periode: {{ questionnaire.startDate | date: 'dd-MM-yyyy' }} t/m {{ questionnaire.endDate | date:
+                'dd-MM-yyyy' }}</span>
+            <span>Doelgroep: {{questionnaire.targetGroup}}</span>
+
+            <div class="d-flex align-items-center gap-2 mb-2">
+                <span [ngClass]="{
+                    'text-success': getStatus(questionnaire.startDate, questionnaire.endDate) === 'green',
+                    'text-warning': getStatus(questionnaire.startDate, questionnaire.endDate) === 'orange',
+                    'text-danger': getStatus(questionnaire.startDate, questionnaire.endDate) === 'red'
+                    }">
+                    Status: {{ getStatus(questionnaire.startDate, questionnaire.endDate) }}
+                </span>
+
+                <app-button *ngIf="getStatus(questionnaire.startDate, questionnaire.endDate) == 'Gepubliceerd' && questionnaire.targetGroup != 'Later kiezen'"
+                    [btnText]="'Versturen'" [btnLeftIcon]="'share-square'" [btnType]="'link'">
+                </app-button>
+            </div>
+        </div>
+    </div>
+
+    <app-button class="preview-btn" [btnText]="'Preview'" [btnType]="'link'" [btnTextAlign]="'center'" [btnLeftIcon]="'eye'"
+        [btnCustomClass]="'preview-btn'" (click)="preview()">
+    </app-button>
+
+    <div class="overview-questions-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-start bg-custom-light-grey text-custom-light-grey">Vragen</th>
+                    <th class="text-center bg-custom-light-grey text-custom-light-grey">Vereist</th>
+                    <th class="text-center bg-custom-light-grey">
+                        <span class="fas fa-plus" [routerLink]="['/admin/questionnaireedit']"
+                            [queryParams]="{ id: questionnaire.id, question: 'new'}">
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+                <tr *ngFor="let question of questionnaire.questions; let i = index; trackBy: trackByQuestionId" cdkDrag>
+
+                    <td [routerLink]="['/admin/questionnaireedit']" *ngIf="question.question_text != ''"
+                        [queryParams]="{ id: questionnaire.id, question: question.id}" class="text-start text-truncate"
+                        style="max-width: 5rem;">
+                        <span class="fas fa-grip-vertical me-3 fa-xs " style="color: #747474;"></span>{{ i + 1 }}. {{
+                        question.question_text }}
+                    </td>
+                    <td [routerLink]="['/admin/questionnaireedit']"
+                        [queryParams]="{ id: questionnaire.id, question: question.id }"
+                        *ngIf="question.question_text != ''" class="text-start">
+                        <div class="d-flex justify-content-center">
+                            <span class="status-icon" [ngClass]="{
+                                'bg-success': question.required,
+                                'bg-danger': !question.required
+                            }"></span>
+                        </div>
+                    </td>
+                    <td class="text-center"><span class="fas fa-trash delete-question-icon text-black-custom"
+                            (click)="removeQuestion(question.id)"></span></td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <app-zero-state *ngIf="questionnaire.questions.length === 0" [mainText]="'Geen vragen gevonden'"
+        [subText]="'Er zijn geen vragen om te tonen'" [icon]="'fas fa-list'">
+    </app-zero-state>
+
+</main>

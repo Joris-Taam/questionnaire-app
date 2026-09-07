@@ -1,0 +1,68 @@
+@use '../../shared/scss/variables.scss' as variables;
+
+.question-container {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.answers .answer-option {
+    display: flex;
+    align-items: center;
+    border: 1px solid variables.$border-light-grey-color;
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.answer-label {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: inline-block;
+    margin-left: 8px;
+    max-width: calc(100% - 24px);
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+button {
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 12px;
+    transition: background-color 0.3s ease;
+    width: 120px;
+}
+
+label {
+    display: block;  
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+
+button {
+    background-color: variables.$blue-color;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.previous-button {
+    margin-right: 10px;
+}
+
+button:disabled {
+    background-color: #ccc;
+}

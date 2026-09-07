@@ -1,0 +1,31 @@
+<div class="px-3">
+  <div class="position-relative border-bottom" style="height: 56px;">
+    <a class="icon position-absolute ms-2 pt-3" [routerLink]="'/admin/resultdetail'"
+      [queryParams]="{ id: questionnaireId}">
+      <span class="fas fa-chevron-left fs-3 text-dark"></span>
+    </a>
+
+    <h1 class="fw-normal text-center position-absolute top-50 start-50 translate-middle m-0 px-3 text-truncate"
+      style="max-width: 90%;">
+      {{ participant_name }}
+    </h1>
+  </div>
+</div>
+
+<main class="participant-detail">
+  <div class="list-group">
+    <div *ngFor="let answer of participantAnswers; let i = index" class="list-group-item answer-item">
+
+      <div class="question-block">
+        <label class="question-label">Vraag {{ i + 1 }}:</label>
+        <div class="question-text">{{ answer.question_text }}</div>
+      </div>
+
+      <div class="answer-block">
+        <label class="answer-label">Antwoord:</label>
+        <div class="answer-text">{{ answer.option_text }}</div>
+      </div>
+
+    </div>
+  </div>
+</main>

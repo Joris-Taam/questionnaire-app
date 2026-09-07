@@ -1,0 +1,39 @@
+@use '../shared/scss/variables' as variables;
+
+ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0 variables.$small-rem;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: variables.$font-size-title;
+
+  span {
+    margin-right: variables.$small-rem;
+  }
+
+  label {
+    font-weight: variables.$font-weight;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+  }
+}
+
+.container {
+  margin-top: 2rem;
+}
+
+h2, h3 {
+  margin-bottom: 1rem;
+}

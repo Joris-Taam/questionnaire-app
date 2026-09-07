@@ -1,0 +1,60 @@
+@use '../../shared/scss/variables.scss' as variables;
+
+.add-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid variables.$border-light-grey-color;
+
+    h1 {
+        margin: 0 auto;
+        margin-left: -1rem;
+        font-size: variables.$font-size-title;
+        font-weight: variables.$font-weight;
+    }
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0 variables.$small-rem;
+    width: 100%;
+    margin: 0;
+    list-style-type: none;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: variables.$small-rem variables.$medium-rem;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.error-message {
+    padding: variables.$small-rem variables.$medium-rem;
+    border-bottom: 1px solid variables.$border-light-grey-color;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+span {
+    margin-left: variables.$small-rem;
+}
+
+label {
+    font-weight: variables.$font-weight;
+}
+
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+}

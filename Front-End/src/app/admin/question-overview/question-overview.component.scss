@@ -1,0 +1,94 @@
+@use '../../shared/scss/variables.scss' as variables;
+
+main {
+  padding: variables.$small-rem;
+}
+
+.overview-description {
+  border-bottom: 1px solid variables.$border-light-grey-color;
+}
+
+.status-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-question-icon {
+  color: #ff0000;
+  font-size: 20px;
+}
+
+.overview-general-info {
+
+  .overview-name,
+  .overview-dates,
+  .overview-description {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  label {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .overview-dates {
+    flex-direction: row;
+    gap: 120px;
+  }
+
+  .start-date-container,
+  .end-date-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .overview-name span,
+  .overview-dates span,
+  .overview-description p {
+    font-size: 16px;
+    color: black;
+    padding: 0.4rem 0px;
+  }
+
+  .overview-name textarea {
+    height: 8rem;
+    margin-bottom: variables.$small-rem;
+  }
+}
+
+.text-black-custom {
+  color: black !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+td.text-center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.bg-custom-light-grey {
+  background-color: variables.$bg-light-grey-color;
+}
+
+.text-custom-light-grey {
+  color: variables.$text-light-grey;
+}
+
+.btn-link {
+  text-decoration: none;
+}
+
+.preview-btn {
+  margin-left: -1.3rem;
+}
